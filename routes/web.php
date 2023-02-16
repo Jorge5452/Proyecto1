@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaginaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,24 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/canciones/{id?}', [PaginaController::class, 'canciones']);
 
 
+Route::get('/contacto', [PaginaController::class, 'contacto']);
 
-Route::get('/canciones/{id?}', function ($id = null) {
-    $listaCanciones = [];
-    $listaCanciones[] = ['Nombre' => 'Hola', 'Artista' => 'Yo'];
-    $listaCanciones[] = ['Nombre' => 'Hola2', 'Artista' => 'Yo2'];
-    $listaCanciones[] = ['Nombre' => 'Hola3', 'Artista' => 'Yo3'];
+Route::post('/contacto', [PaginaController::class, 'bautizo']);
 
-    if(!is_null($id)){
-        $cancion_se = $listaCanciones[$id];
-    } else {
-        $cancion_se = null;
-    }
-
-    return view('canciones', compact('listaCanciones', 'cancion_se'));
-        //->with(['listaCanciones' => $listaCanciones]);
-});
 
     // route::get('canciones/{id}', function ($id){
     //     $listaCanciones = [];
